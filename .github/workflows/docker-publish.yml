@@ -19,7 +19,9 @@ jobs:
           docker build ./terrum/ -t JHumphreys89/terrum:latest
           docker build ./terrum-alpine/ -t JHumphreys89/terrum-alpine:latest
       - name: push image to docker hub
+        env:
+          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: |
-          echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u JHumphreys89 --password-stdin
+          echo "$DOCKER_HUB_TOKEN" | docker login -u JHumphreys89 --password-stdin
           docker push JHumphreys89/terrum:latest
           docker push JHumphreys89/terrum-alpine:latest
