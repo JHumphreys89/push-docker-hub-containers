@@ -1,0 +1,15 @@
+global:
+scrape_interval: 15s # By default, scrape targets every 15 seconds.
+evaluation_interval: 15s # Evaluate rules every 15s.
+
+scrape_configs:
+
+job_name: 'prometheus'
+static_configs:
+
+targets: ['localhost:9090']
+
+job_name: 'container_metrics'
+static_configs:
+
+targets: ['localhost:9100'] # Assuming node_exporter or similar is running here, for simplicity this is just a placeholder.

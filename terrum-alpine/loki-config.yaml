@@ -1,0 +1,41 @@
+server:
+http_listen_port: 3100
+
+auth_enabled: false
+
+common:
+path_prefix: /loki/
+ring:
+instance_addr: 127.0.0.1
+kvstore:
+store: inmemory
+replication_factor: 1
+wal:
+dir: /loki/wal
+
+schema_config:
+configs:
+- from: 2020-10-24
+store: boltdb-shipper
+object_store: filesystem
+schema: v11
+index:
+prefix: index_
+period: 24h
+
+storage_config:
+boltdb_shipper:
+active_index_directory: /loki/boltdb-shipper-active
+cache_location: /loki/boltdb-shipper-cache
+cache_ttl: 24h
+filesystem:
+directory: /loki/chunks
+
+ingester:
+lifecycler:
+address: 127.0.0.1
+ring:
+kvstore:
+store: inmemory
+replication_factor: 1
+final_sleep: 0s

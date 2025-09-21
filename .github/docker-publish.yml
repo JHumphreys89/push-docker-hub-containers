@@ -1,0 +1,25 @@
+name: Build and Publish Image to Docker
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Only run when these two files are changed, not on every push to the main branch
+      - 'terrum/Containerfile'
+      - 'terrum-alpine/Containerfile'
+      
+jobs:
+  publish_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build images
+        run: |
+          docker build ./terrum/ -t JHumphreys89/terrum:latest
+          docker build ./terrum-alpine/ -t JHumphreys89/terrum-alpine:latest
+      - name: push image to docker hub
+        run: |
+          echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u JHumphreys89 --password-stdin
+          docker push JHumphreys89/terrum:latest
+          docker push JHumphreys89/terrum-alpine:latest
