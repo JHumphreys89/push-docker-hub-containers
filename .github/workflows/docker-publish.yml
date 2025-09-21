@@ -23,5 +23,7 @@ jobs:
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: |
           echo "$DOCKER_HUB_TOKEN" | docker login -u JHumphreys89 --password-stdin
+          # Debug: Check Docker login status
+          docker info
           docker push JHumphreys89/terrum:latest
           docker push JHumphreys89/terrum-alpine:latest
