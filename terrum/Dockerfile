@@ -8,8 +8,8 @@ ARG TERRAFORM_VERSION=1.12.2
 WORKDIR /tmp
 
 # Install the necessary tools
-RUN yum install -y curl unzip && \
-    yum clean all
+RUN microdnf install -y curl unzip && \
+    microdnf clean all
 
 # Download, extract, and install Terraform
 RUN curl -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
