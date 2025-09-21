@@ -31,8 +31,10 @@ RUN curl -L "https://github.com/prometheus/prometheus/releases/download/v${PROM_
 
 # Download, extract, and clean up Loki binary
 RUN curl -L "https://github.com/grafana/loki/releases/download/v${LOKI_VERSION}/loki-linux-amd64.zip" -o loki.zip && \
-    unzip loki.zip -d /usr/local/bin/ && \
-    rm loki.zip
+    unzip loki.zip -d /tmp && \
+    mv /tmp/loki-linux-amd64 /usr/local/bin/loki && \
+    rm loki.zip && \
+    rm -rf /tmp/loki-linux-amd64
 
 # Set perms and ownership
 RUN chown -R prom:prom /etc/prometheus /prometheus && \
