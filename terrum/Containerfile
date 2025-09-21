@@ -19,6 +19,9 @@ RUN curl -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAF
 # Clean up remaining unnecessary files and directories
 RUN apk del curl unzip
 
+# Exposing port 9090 for Prometheus
+EXPOSE 9090
+
 # Set the entrypoint to Terraform
 ENTRYPOINT ["/usr/local/bin/terraform"]
 
