@@ -8,7 +8,7 @@ ARG TERRAFORM_VERSION=1.12.2
 WORKDIR /tmp
 
 # Install the necessary tools
-RUN dnf instsall -y curl unzip && \
+RUN dnf install -y curl unzip && \
     dnf clean all
 
 # Download, extract, and install Terraform
