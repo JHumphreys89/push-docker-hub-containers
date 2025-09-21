@@ -8,16 +8,13 @@ ARG TERRAFORM_VERSION=1.12.2
 WORKDIR /tmp
 
 # Install the necessary tools
-# --no-cache ensure that package lists are not stored, reducing image size
-RUN apk add --no-cache curl unzip
+RUN dnf instsall -y curl unzip && \
+    dnf clean all
 
 # Download, extract, and install Terraform
 RUN curl -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     unzip /tmp/terraform.zip -d /usr/local/bin/ && \
     rm /tmp/terraform.zip
-
-# Clean up remaining unnecessary files and directories
-RUN apk del curl unzip
 
 # Exposing port 9090 for Prometheus
 EXPOSE 9090
