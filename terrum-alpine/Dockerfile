@@ -1,9 +1,9 @@
 # Use latest official version of Alpine Linux as base image
-FROM ${{ vars.ALPINE_BASE_IMAGE }}
+FROM alpine:latest
 
 # Set up environment vars for Prometheus and Loki versions
-ENV PROM_VERSION=${{ vars.PROM_VERSION }} \
-    LOKI_VERSION=${{ vars.LOKI_VERSION }}
+ENV PROM_VERSION=2.53.2 \
+    LOKI_VERSION=2.9.2
 
 # Install necessary packages and download Prometheus and Loki binaries
 run apk update && \

@@ -1,8 +1,8 @@
 # Use the smallest official Oracle Linux image as the base image
-FROM ${{ vars.ORACLE_BASE_IMAGE }}
+FROM oraclelinux:10-slim
 
 # Set build argument for Terraform version
-ARG TERRAFORM_VERSION="${{ vars.TERRAFORM_VERSION }}"
+ARG TERRAFORM_VERSION=1.12.2
 
 # Set a working directory inside the container
 WORKDIR /tmp
