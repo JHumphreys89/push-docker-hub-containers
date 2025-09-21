@@ -5,8 +5,8 @@ on:
       - main
     paths:
       # Only run when these two files are changed, not on every push to the main branch
-      - 'terrum/Containerfile'
-      - 'terrum-alpine/Containerfile'
+      - 'terrum/Dockerfile'
+      - 'terrum-alpine/Dockerfile'
       
 jobs:
   publish_images:
