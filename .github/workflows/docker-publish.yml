@@ -16,21 +16,13 @@ jobs:
         uses: actions/checkout@v4
       - name: build images
         run: |
-          docker build ./terrum/ -t JHumphreys89/terrum:latest
-          docker build ./terrum-alpine/ -t JHumphreys89/terrum-alpine:latest
+          docker build ./terrum/ -t jhumphreys89/terrum:latest
+          docker build ./terrum-alpine/ -t jhumphreys89/terrum-alpine:latest
       - name: push image to docker hub
         env:
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: |
-          set -x
-          echo "Docker Hub Username: JHumphreys89"
-          echo "$DOCKER_HUB_TOKEN" | docker login -u JHumphreys89 --password-stdin
-          LOGIN_STATUS=$?
-          if [ $LOGIN_STATUS -ne 0 ]; then
-            echo "Docker login failed with status $LOGIN_STATUS"
-            exit $LOGIN_STATUS
-          fi
+          echo "$DOCKER_HUB_TOKEN" | docker login -u jhumphreys89 --password-stdin
           docker info
-          docker push JHumphreys89/terrum:latest
-          docker push JHumphreys89/terrum-alpine:latest
-          set +x
+          docker push jhumphreys89/terrum:latest
+          docker push jhumphreys89/terrum-alpine:latest
